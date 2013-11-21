@@ -15,7 +15,7 @@ Like I said read the source code, but why?
 
 Currently ActionFramework is in an alpha stage of the framework. This means that it is under heavy development and not really ready to use in production envoirements.
 
-Because it is in the alpha I have not had the time to create the documentation, but I think the source code is not very hard to understand, and ActionFramework includes a very nice commandline utility, so you can run "afw new projectname" and you are ready to go!
+Because it is in the alpha stage, I have not had the time to create the documentation, but I think the source code is not very hard to understand, and ActionFramework includes a very nice commandline utility, so you can run "afw new projectname" and you are ready to go!
 
 # Installation
 
