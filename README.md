@@ -9,7 +9,9 @@ It's meant for rapid and fun development of your application.
 Because of that is easy understable and easy to use and customize.    
 Want some documentation? Read the source code.
 
-# Why do I need to read the source code?
+# Documentation
+
+Like I said read the source code, but why?
 
 Currently ActionFramework is in an alpha stage of the framework. This means that it is under heavy development and not really ready to use in production envoirements.
 
