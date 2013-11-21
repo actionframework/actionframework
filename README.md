@@ -28,6 +28,25 @@ You can install this framework with the following command:
 
     [sudo] gem install actionframework
 
+# Create your first project
+
+You can easily create a project by running:
+
+    afw new projectname 
+
+This will create a basic folder structure and some files.    
+It might still have some references to "GORS", this was the name the framework had in the past. This might also create some errors, this can be solved by creating an initializer in the folder "initializers", named for example "oldnamesolver.rb". You need to put the following in that file:
+
+     module Gors
+    	include ActionFramework
+     end
+
+When you did that, you can start your first application by running:
+
+    afw s
+
+More documentation will be available very soon.
+
 # State of development
 
 Currently the framework is in an alpha stage, but I'm working very hard to get it production ready.    
