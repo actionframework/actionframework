@@ -6,7 +6,7 @@ Ready for action? Ready, set, go!
 ActionFramework is a web application framework for Ruby.   
 It's meant for rapid and fun development of your application.
 
-Because of that it is easy understable and easy to use and customize.    
+Because of that it is easy understandable and easy to use and customize.    
 Want some documentation? Read the source code.
 
 # Requirements
