@@ -9,6 +9,11 @@ It's meant for rapid and fun development of your application.
 Because of that is easy understable and easy to use and customize.    
 Want some documentation? Read the source code.
 
+# Requirements
+
+It just requires Ruby and RubyGems.    
+I have tested it with Ruby version 1.9.3.
+
 # Documentation
 
 Like I said read the source code, but why?
@@ -22,6 +27,11 @@ Because it is in the alpha stage, I have not had the time to create the document
 You can install this framework with the following command:
 
     [sudo] gem install actionframework
+
+# State of development
+
+Currently the framework is in an alpha stage, but I'm working very hard to get it production ready.    
+Version 1.0.0, will be the first stable release and it will bring a website with full documentation. If you like the project please "star" it!
 
 # Licence
 
