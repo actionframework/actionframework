@@ -1,0 +1,49 @@
+#!/usr/bin/env ruby
+require 'optitron'
+require 'fileutils'
+require 'actionframework'
+require 'json'
+
+class ActionFrameworkCLI < Optitron::CLI
+	desc "About ActionFramework"
+	def about
+		puts "ActionFramework (previously called ActionFramework) is a web application framework that tries to be as flexible as sinatra and at the same time have the structure of rails.Enjoy!"
+	end
+	desc "Create ActionFramework project"
+	def new projectname
+		puts "Creating project directory and structure"
+		Dir.mkdir("#{projectname}")
+		Dir.mkdir("#{projectname}/controllers")
+		Dir.mkdir("#{projectname}/models")
+		Dir.mkdir("#{projectname}/views")
+		Dir.mkdir("#{projectname}/config")
+		Dir.mkdir("#{projectname}/initializers")
+		FileUtils.touch("#{projectname}/views/layout.html.erb")
+		FileUtils.touch("#{projectname}/Gemfile")
+		File.write("#{projectname}/main.rb","# Example of basic configuration\nActionFramework = ActionFramework::Server.new\n\nnActionFramework.autoimport\nActionFramework.start")
+		File.write("#{projectname}/controllers/default_controller.rb","class DefaultController < ActionFramework::Controller
+\n	def index\n		\"<h1>Welcome to ActionFramework</h1><i>Great Opensource Ruby Server</i><p>ActionFramework is loading routes from routes.json but you should write your own main.rb<br/>This is just to gettings started</p>\"\n    end\nend");
+		File.write("#{projectname}/routes.json","{\n \"get\": [{\n    \"/\": \"DefaultController#index\"\n}]\n}")
+		File.write("#{projectname}/config/routes.rb","ActionFramework::Server.current.routes do\n\n	get \"/\" => \"DefaultController#index\"\n\nend")
+		File.write("#{projectname}/config/settings.rb","ActionFramework::Server.current.settings do |s|\n\nend")
+		puts "Done"
+		puts "Test ActionFramework by running \"ActionFramework s\""
+	end
+
+	desc "Start ActionFramework server"
+	def s  
+		ActionFramework::Server.init
+		ActionFramework::Server.current.start
+	end
+
+	desc "Start ActionFramework console"
+	def c
+		ActionFramework::Server.init
+		puts "Starting ActionFramework IRB"
+		require 'irb'
+		ARGV.clear	
+		IRB.start
+	end
+end
+
+ActionFrameworkCLI.dispatch
