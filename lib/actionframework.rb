@@ -72,6 +72,10 @@ module ActionFramework
       # Call the Controller
       request = Request.new
       request.request.params = Rack::Utils.parse_query(env["QUERY_STRING"])
+      Rack::Utils.parse_query(env["rack.input"].read).each do |key,value|
+        request.request.params[key] = value
+      end
+
       if(matcheddata != nil)
         request.request.params.merge! (matcheddata)
       end
