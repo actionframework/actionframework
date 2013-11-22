@@ -70,7 +70,7 @@ module ActionFramework
       end
 
       # Call the Controller
-      request = Request.new
+      request = Request.new(env)
       request.request.params = Rack::Utils.parse_query(env["QUERY_STRING"])
       Rack::Utils.parse_query(env["rack.input"].read).each do |key,value|
         request.request.params[key] = value
@@ -231,22 +231,29 @@ module ActionFramework
     end
 
     def params
-      @info.request.params
+      @info.req.params
     end
+
+    def request
+      @info.req
+    end
+
   end
 
   class Request
     attr_accessor :response
     attr_accessor :request
+    attr_accessor :req
 
-    def initialize
+    def initialize(env)
        @response = OpenStruct.new ({:headers => {}, :status_code => "200"})
        @request =  OpenStruct.new ({:ip => "",:user_agent => "",:headers => {},:params => {}})
+       @req = Rack::Request.new(env)
     end
 
     def info
       return @info
-    end 
+    end
   end
 
   class Model
