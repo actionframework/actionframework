@@ -44,7 +44,7 @@ module ActionFramework
         @errorhandler = ActionFramework::DefaultErrorHandler.new
       end
 
-      routesinfo = @routesklass.routes(env["REQUEST_PATH"])
+      routesinfo = @routesklass.routes(env["REQUEST_PATH"],env["REQUEST_METHOD"].downcase)
       controller = routesinfo[0]
       @logger.log controller.inspect
       matcheddata = routesinfo[1]
@@ -58,7 +58,7 @@ module ActionFramework
         return @errorhandler.call "404"
       end
 
-      #
+      # Logic for models: in development
       if(controller.include? "ActionFramework::")
         ctrl = controller.split("#")
         params = ctrl[1].split(":")
@@ -139,39 +139,47 @@ module ActionFramework
     attr_accessor :posts
 
     def initialize logger
-      @routes = {}
+      @routes = {:get => {}, :post => {},:update => {}, :delete => {},:patch => {}}
       @models = {}
       @logger = logger
       @routespost = {}
     end
 
     def get hash
-      @routes[pattern_for(hash.keys.first.to_s)] = hash[hash.keys.first.to_s]
+      @routes[:get][pattern_for(hash.keys.first.to_s)] = hash[hash.keys.first.to_s]
       @logger.log "Adding route GET "+hash.keys.first.to_s
     end
 
-    def json
-      # TODO zorg evoor dat routes ook van routes.json gehaald kunnen worden (structuur zie generator in de CLI)
-    end
-
     def post hash
-      @routespost[hash.keys.first.to_s] = hash[hash.keys.first.to_s]
+      @routes[:post][hash.keys.first.to_s] = hash[hash.keys.first.to_s]
       @logger.log "Adding route POST "+hash.keys.first.to_s
     end
 
-    def post
+    def update hash
+      @routes[:update][hash.keys.first.to_s] = hash[hash.keys.first.to_s]
+      @logger.log "Adding route UPDATE "+hash.keys.first.to_s
+    end
 
+    def delete hash
+      @routes[:delete][hash.keys.first.to_s] = hash[hash.keys.first.to_s]
+      @logger.log "Adding route DELETE "+hash.keys.first.to_s
+    end
+
+    def patch hash
+      @routes[:patch][hash.keys.first.to_s] = hash[hash.keys.first.to_s]
+      @logger.log "Adding route PATCH "+hash.keys.first.to_s
     end
 
     def model hash
+      # In development
       @routes["/api/"+hash.keys.first.to_s] = "ActionFramework::Model#call:"+hash[hash.keys.first.to_s];
       puts "Adding model with path "+hash.keys.first.to_s
     end
 
-    def routes(path)
+    def routes(path,method)
       hash = {}
       controller = nil
-      @routes.each do |route,controller|
+      @routes[method.to_sym].each do |route,controller|
         if(matched = route.match path)
           matched.names.each do |name|
             hash[name] = matched[name]
