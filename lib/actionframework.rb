@@ -13,8 +13,8 @@ module ActionFramework
 	class Server
 		def initialize
 			require 'bundler'
-            Bundler.require(:default)
-
+			Bundler.require(:default)
+			
 			@routesklass = ActionFramework::Routes.new
 			@settings = ActionFramework::Settings.new
 		end
