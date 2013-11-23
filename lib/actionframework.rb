@@ -21,6 +21,8 @@ module ActionFramework
 
 		def self.current
 	       if($runningserver.nil?)
+	       	 $runningserver = ActionFramework::Server.new
+	       	 $runningserver.autoimport
 	         $runningserver
 	       else
 	         $runningserver

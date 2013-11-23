@@ -353,3 +353,21 @@ at_exit do
     File.delete("running.pid")
   end
 end
+
+
+########## IMPORTANT LOGIC SOON TO BE INTEGRATED ###### 
+string = "/{{appname}}/{{userid}}"
+
+string = string.gsub("{{","(?<")
+string = string.gsub("}}",">(.*))") 
+string.insert(0,"^")
+string = string+"$"
+puts string
+regex = Regexp.new (string)
+
+puts regex
+
+if(matched = regex.match "/testapp/1")
+  puts "matched"
+  p matched
+end

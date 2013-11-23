@@ -26,5 +26,11 @@ module ActionFramework
 		def url
 			@url
 		end
+
+		def erb template
+      		renderer = Tilt::ERBTemplate.new("views/layout.html.erb")
+      		output = renderer.render(self){ Tilt::ERBTemplate.new("views/"+template.to_s+".html.erb").render(self) }
+      		return output
+		end
 	end
 end

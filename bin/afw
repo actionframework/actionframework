@@ -26,8 +26,10 @@ class ActionFrameworkCLI < Optitron::CLI
 		File.write("#{projectname}/routes.json","{\n \"get\": [{\n    \"/\": \"DefaultController#index\"\n}]\n}")
 		File.write("#{projectname}/config/routes.rb","ActionFramework::Server.current.routes do\n\n	get \"/\" => \"DefaultController#index\"\n\nend")
 		File.write("#{projectname}/config/settings.rb","ActionFramework::Server.current.settings do |s|\n\nend")
+		File.write("#{projectname}/Gemfile","source 'https://rubygems.org'\n\ngem 'actionframework'")
+		system("cd #{projectname} && bundle install")
 		puts "Done"
-		puts "Test ActionFramework by running \"ActionFramework s\""
+		puts "Run \"afw s\" to run your app"
 	end
 
 	desc "Start ActionFramework server"
