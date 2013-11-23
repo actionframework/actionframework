@@ -5,9 +5,10 @@
 
 module ActionFramework
 	class Controller
-		def initialize req,res
+		def initialize req,res,url
 			@req = req
 			@res = res
+			@url = url
 		end
 
 		def request
@@ -20,6 +21,10 @@ module ActionFramework
 
 		def params
 			@req.params
+		end
+
+		def url
+			@url
 		end
 	end
 end

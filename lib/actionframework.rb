@@ -5,26 +5,22 @@ require 'erb'
 
 require 'actionframework/routes'
 require 'actionframework/controller'
+require 'actionframework/settings'
 
 $runningserver = nil
 
 module ActionFramework
 	class Server
 		def initialize
+			require 'bundler'
+            Bundler.require(:default)
+
 			@routesklass = ActionFramework::Routes.new
 			@settings = ActionFramework::Settings.new
 		end
 
-		def self.init
-	      require 'bundler'
-	      Bundler.require(:default)
-	      $runningserver = ActionFramework::Server.new
-	      $runningserver.autoimport
-	    end
-		
 		def self.current
 	       if($runningserver.nil?)
-	         ActionFramework::Server.init
 	         $runningserver
 	       else
 	         $runningserver
@@ -67,7 +63,7 @@ module ActionFramework
 			matcheddata = controllerinfo[1]
 
 			control = controller.split("#")
-			result = Object.const_get(control[0]).new(req,res).send(control[1])			
+			result = Object.const_get(control[0]).new(req,res,matcheddata).send(control[1])			
 			res.body = [result]
 			res.finish
 		end
@@ -83,8 +79,4 @@ module ActionFramework
 	      Rack::Server.new({:app => self,:server => @settings.server, :Port => @settings.port}).start
 	    end
 	end	
-
-	class Settings
-
-	end
 end

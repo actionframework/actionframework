@@ -32,13 +32,13 @@ class ActionFrameworkCLI < Optitron::CLI
 
 	desc "Start ActionFramework server"
 	def s  
-		ActionFramework::Server.init
+		$runningserver = ActionFramework::Server.new
 		ActionFramework::Server.current.start
 	end
 
 	desc "Start ActionFramework console"
 	def c
-		ActionFramework::Server.init
+		$runningserver = ActionFramework::Server.new
 		puts "Starting ActionFramework IRB"
 		require 'irb'
 		ARGV.clear	
