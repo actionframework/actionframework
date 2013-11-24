@@ -9,12 +9,12 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="744.09448819"
-   height="1052.3622047"
+   width="507.21439"
+   height="421.63727"
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="drawing.svg"
+   sodipodi:docname="logo.svg"
    inkscape:export-filename="/apps/gorbframework/actionframework/logo.png"
    inkscape:export-xdpi="170.76291"
    inkscape:export-ydpi="170.76291">
@@ -28,8 +28,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
-     inkscape:cx="331.54047"
-     inkscape:cy="489.558"
+     inkscape:cx="276.61691"
+     inkscape:cy="228.74425"
      inkscape:document-units="px"
      inkscape:current-layer="g3900"
      showgrid="false"
@@ -37,7 +37,11 @@
      inkscape:window-height="752"
      inkscape:window-x="0"
      inkscape:window-y="22"
-     inkscape:window-maximized="0" />
+     inkscape:window-maximized="0"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -53,7 +57,8 @@
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     id="layer1">
+     id="layer1"
+     transform="translate(-54.923559,-369.91117)">
     <g
        id="g3785"
        transform="matrix(0.80407597,-0.59452657,0.59452657,0.80407597,-364.87481,332.0289)">
