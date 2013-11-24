@@ -12,7 +12,9 @@ module ActionFramework
 
 		def build_regex string
 			string = string.gsub("{{","(?<")
-			string = string.gsub("}}",">(.*))")	
+			string = string.gsub("}}",">(.*))") 
+			string.insert(0,"^")
+			string = string+"$"
 			regex = Regexp.new (string)
 			regex
 		end
