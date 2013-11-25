@@ -56,11 +56,13 @@ module ActionFramework
 			res = Rack::Response.new
 
 			# auto-api feature
+			# [todo] - complete auto-api feature
 			if(matcheddate = req.match(Regexp.new("^/api/(?<modelname>(.*))$")))
 				policy = @routesklass.models[matcheddata[:modelname]]
 				if(policy == nil)
 
 				else
+					# [todo] - [autoapi] check what request type is used
 					Object.const_get(matcheddata[:modelname]).new
 				end
 			end
