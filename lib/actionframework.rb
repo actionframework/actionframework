@@ -55,6 +55,16 @@ module ActionFramework
 			req = Rack::Request.new(env)
 			res = Rack::Response.new
 
+			# auto-api feature
+			if(matcheddate = req.match(Regexp.new("^/api/(?<modelname>(.*))$")))
+				policy = @routesklass.models[matcheddata[:modelname]]
+				if(policy == nil)
+
+				else
+					Object.const_get(matcheddata[:modelname]).new
+				end
+			end
+
 			controllerinfo = @routesklass.route(req.path,req.request_method)
 			if(controllerinfo == nil)
 				res.body = [ActionFramework::ErrorHandler.call("error_404")]

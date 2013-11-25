@@ -6,6 +6,8 @@
 module ActionFramework
 	class Routes
 		attr_accessor :routes
+		attr_accessor :models
+
 		def initialize
 			@routes = {:get => {}, :post => {}, :update => {}, :delete => {}, :patch => {}}
 		end
@@ -37,6 +39,11 @@ module ActionFramework
 
 		def patch hash
 			@routes[:patch][build_regex(hash.keys.first.to_s)] = hash[hash.keys.first.to_s] 
+		end
+
+		def model hash
+			# @models[name of the class of the model] = name of class of the access policy of the model
+			@models[hash.keys.first_to.s] = hash[hash.keys.first.to_s]
 		end
 
 		def route(path,method)
