@@ -1,4 +1,4 @@
-#######################
+r#######################
 # Licenced under MIT ##
 ### © BramVDB.com #####
 #######################
@@ -30,6 +30,12 @@ module ActionFramework
 		def erb template
       		renderer = Tilt::ERBTemplate.new("views/layout.html.erb")
       		output = renderer.render(self){ Tilt::ERBTemplate.new("views/"+template.to_s+".html.erb").render(self) }
+      		return output
+		end
+
+		def erb_text erb_text
+			renderer = Tilt::ERBTemplate.new("views/layout.html.erb")
+      		output = renderer.render(self){ erb_text }
       		return output
 		end
 	end
