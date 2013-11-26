@@ -55,17 +55,8 @@ module ActionFramework
 			req = Rack::Request.new(env)
 			res = Rack::Response.new
 
-			# auto-api feature
-			# [todo] - complete auto-api feature
-			if(matcheddate = req.match(Regexp.new("^/api/(?<modelname>(.*))$")))
-				policy = @routesklass.models[matcheddata[:modelname]]
-				if(policy == nil)
-
-				else
-					# [todo] - [autoapi] check what request type is used
-					Object.const_get(matcheddata[:modelname]).new
-				end
-			end
+			# auto-api feature (only at path /api/*)
+			getModelResponse req,res
 
 			controllerinfo = @routesklass.route(req.path,req.request_method)
 			if(controllerinfo == nil)
@@ -92,5 +83,42 @@ module ActionFramework
 		def start
 	      Rack::Server.new({:app => self,:server => @settings.server, :Port => @settings.port}).start
 	    end
+
+	    def getModelResponse req,res
+	    	# auto-api start
+	    	# [todo] add api security with policies 
+	    	if(matcheddate = req.path.match(Regexp.new("^/api/(?<modelname>(.*))$")))
+				policy = @routesklass.models[matcheddata[:modelname]]
+				if(policy == nil)
+
+				else
+					res.headers = {"Content-type" => "application/json"}
+					model = Object.const_get(matcheddata[:modelname])
+					case req.request_method
+					when "POST"
+						response = model.create(JSON.parse(req.body.string)).to_json
+						res.write response
+						res.finish
+					when "GET"
+						response = model.all.to_json
+						res.write response
+						res.finish
+					when "UPDATE"
+						doc = JSON.parse(req.body.string)
+						modelfind = model.where(doc[:where])
+						response = modelfind.update_attributes(doc[:attributes]).to_json						
+						res.write response
+						res.finish
+					when "DELETE"
+						
+					else
+
+					end
+
+				end
+			end
+			# end auto-api
+	    end
+
 	end	
 end
