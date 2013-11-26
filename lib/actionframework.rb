@@ -7,6 +7,7 @@ require 'actionframework/routes'
 require 'actionframework/controller'
 require 'actionframework/settings'
 require 'actionframework/error_handler'
+require 'actionframework/modelhelper'
 
 $runningserver = nil
 
@@ -90,26 +91,16 @@ module ActionFramework
 	    	# [todo] add api security with policies 
 	    	if(matcheddate = req.path.match(Regexp.new("^/api/(?<modelname>(.*))$")))
 				policy = @routesklass.models[matcheddata[:modelname]]
-				if(policy == nil)
-
-				else
+				if(policy != nil)
 					res.headers = {"Content-type" => "application/json"}
 					model = Object.const_get(matcheddata[:modelname])
 					case req.request_method
 					when "POST"
-						response = model.create(JSON.parse(req.body.string)).to_json
-						res.write response
-						res.finish
+						ActionFramework::ModelHelper.post model,res
 					when "GET"
-						response = model.all.to_json
-						res.write response
-						res.finish
+						ActionFramework::ModelHelper.get model,res
 					when "UPDATE"
-						doc = JSON.parse(req.body.string)
-						modelfind = model.where(doc[:where])
-						response = modelfind.update_attributes(doc[:attributes]).to_json						
-						res.write response
-						res.finish
+						ActionFramework::ModelHelper.update model,res
 					when "DELETE"
 						
 					else

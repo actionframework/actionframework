@@ -1,6 +1,6 @@
 module ActionFramework
 	
-	def ErrorHandler < ActionFramework::Controller
+	class ErrorHandler < ActionFramework::Controller
 		def error_404
 			erb_text "<h1>Error 404</h1>"
 		end
