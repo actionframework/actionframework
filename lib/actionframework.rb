@@ -6,6 +6,7 @@ require 'erb'
 require 'actionframework/routes'
 require 'actionframework/controller'
 require 'actionframework/settings'
+require 'actionframework/error_handler'
 
 $runningserver = nil
 
