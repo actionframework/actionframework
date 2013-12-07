@@ -8,6 +8,8 @@ require 'actionframework/controller'
 require 'actionframework/settings'
 require 'actionframework/error_handler'
 require 'actionframework/modelhelper'
+require 'actionframework/realtime'
+require 'actionframework/base'
 
 $runningserver = nil
 

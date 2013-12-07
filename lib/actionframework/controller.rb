@@ -38,5 +38,9 @@ module ActionFramework
       		output = renderer.render(self){ erb_text }
       		return output
 		end
+
+		def session
+			@req.session
+		end
 	end
 end
