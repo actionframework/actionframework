@@ -17,6 +17,7 @@ class ActionFrameworkCLI < Optitron::CLI
 		Dir.mkdir("#{projectname}/models")
 		Dir.mkdir("#{projectname}/views")
 		Dir.mkdir("#{projectname}/config")
+		Dir.mkdir("#{projectname}/static")
 		Dir.mkdir("#{projectname}/initializers")
 		FileUtils.touch("#{projectname}/views/layout.html.erb")
 		FileUtils.touch("#{projectname}/Gemfile")
