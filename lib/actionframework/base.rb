@@ -7,9 +7,14 @@ module ActionFramework
 	class Base
 		def initialize
 			@app = Rack::Builder.new do
+				map '/static' do
+					run Rack::File.new("static")
+				end
+
 				map '/realtime' do
 					run ActionFramework::Realtime.new
 				end
+				
 	       	  	run ActionFramework::Server.current
 	       	end
 		end
