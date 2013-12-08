@@ -2,6 +2,7 @@ ActionFramework
 ===============
 
 ![ActionFramework logo](https://raw.github.com/actionframework/actionframework/master/logo.png)
+
 [![Code Climate](https://codeclimate.com/github/actionframework/actionframework.png)](https://codeclimate.com/github/actionframework/actionframework)
 
 Ready for action? Ready, set, go!
