@@ -5,6 +5,8 @@ ActionFramework
 
 [![Code Climate](https://codeclimate.com/github/actionframework/actionframework.png)](https://codeclimate.com/github/actionframework/actionframework)
 
+** Warning: This framework is developping fast, so a new minor release can include breaking changes with your existing code. We will create a changelog soon so you can follow that.**
+
 Ready for action? Ready, set, go!
 
 ActionFramework is a web application framework for Ruby.   
