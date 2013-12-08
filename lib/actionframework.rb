@@ -50,6 +50,7 @@ module ActionFramework
 
 	      require './config/routes'
 	      require './config/settings'
+	      require './config/plugables'
 
 	      Dir.glob("initializers/*").each do |file|
 	        require './'+file
