@@ -3,6 +3,7 @@ require 'tilt'
 require 'json'
 require 'erb'
 
+require 'actionframework/string'
 require 'actionframework/routes'
 require 'actionframework/controller'
 require 'actionframework/settings'

@@ -1,0 +1,3 @@
+[submodule "lib/plugables"]
+	path = lib/plugables
+	url = git@github.com:actionframework/plugables.git
