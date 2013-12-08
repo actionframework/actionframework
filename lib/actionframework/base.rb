@@ -9,7 +9,7 @@ module ActionFramework
 			@app = Rack::Builder.new do
 				map '/static' do
 					run Rack::File.new("static")
-				end&
+				end
 
 				map '/realtime' do
 					run ActionFramework::Realtime.new
