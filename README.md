@@ -1,7 +1,7 @@
 ActionFramework
 ===============
 
-<center><img style="height: 100px;" src="http://actionframework.io/rocket.png" /></center>
+<center><img src="http://actionframework.io/rocket_smaller.png" /></center>
 
 [![Code Climate](https://codeclimate.com/github/actionframework/actionframework.png)](https://codeclimate.com/github/actionframework/actionframework)
 
