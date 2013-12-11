@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'actionframework'
-  s.version     = '0.1.2.2'
+  s.version     = '0.1.2.5'
   s.date        = '2013-11-20'
   s.summary     = "A web framework built on top of Rack"
   s.description = "A web framework built on top of Rack, it has the simplicity of sinatra and the structure of rails"
