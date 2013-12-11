@@ -69,6 +69,7 @@ module ActionFramework
 			controllerinfo = @routesklass.route(req.path,req.request_method)
 			if(controllerinfo == nil)
 				res.body = [ActionFramework::ErrorHandler.new(req,res,{}).send("error_404")]
+				res.status = 404
 				return res.finish
 			end	
 
