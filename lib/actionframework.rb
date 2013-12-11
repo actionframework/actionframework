@@ -4,6 +4,7 @@ require 'json'
 require 'erb'
 
 require 'actionframework/string'
+require 'actionframework/gemextra'
 require 'actionframework/gem'
 require 'actionframework/routes'
 require 'actionframework/controller'

@@ -45,7 +45,8 @@ module ActionFramework
 	      		output = renderer.render(self){ Tilt::ERBTemplate.new("views/errors/#{code}.html.erb").render(self) }
 	      		return output
       		else
-      			libdir = Gem::Specification.find_lib_dir_by_name("actionframework")+"/helpers"
+      			root = ActionFramework::Gem.root
+      			libdir = root.resources
       			renderer = Tilt::ERBTemplate.new(libdir+"/views/errors/layout.html.erb")
 	      		output = renderer.render(self){ Tilt::ERBTemplate.new(libdir+"/views/errors/#{code}.html.erb").render(self) }
       		end
