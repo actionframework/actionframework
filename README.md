@@ -122,6 +122,10 @@ I hope this README is clear enough for your to understand how you can use this f
 Currently the framework is in an alpha stage, but I'm working very hard to get it production ready.    
 Version 1.0.0, will be the first stable release and it will bring a website with full documentation. If you like the project please "star" it!
 
+# Changelog
+
+Checkout our changelog [here](https://github.com/actionframework/actionframework/blob/master/CHANGELOG.md).
+
 # Licence
 
 MIT
