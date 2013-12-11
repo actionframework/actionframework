@@ -16,6 +16,8 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "optitron"
   s.add_runtime_dependency "websocket-rack"
   s.add_runtime_dependency "httparty"
+  s.add_runtime_dependency "jewel"
+
 
   s.executables = ["action"]
 end
