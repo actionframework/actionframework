@@ -17,5 +17,5 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "websocket-rack"
   s.add_runtime_dependency "httparty"
 
-  s.executables = ["afw"]
+  s.executables = ["action"]
 end
