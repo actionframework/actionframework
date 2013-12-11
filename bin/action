@@ -52,9 +52,11 @@ class ActionFrameworkCLI < Optitron::CLI
 		File.write("#{projectname}/Gemfile","source 'https://rubygems.org'\n\ngem 'actionframework'")
 		File.write("#{projectname}/config.ru","require 'actionframework'\n\nrun ActionFramework::Base.new")
 		File.write("#{projectname}/config/plugables.rb","ActionFramework::Plugables.new do \n\nend")
+		File.write("#{projectname}/views/layout.html.erb",File.read(ActionFramework::Gem.root.resources.templates("layout.html.erb").to_s))
+		File.write("#{projectname}/views/index.html.erb",File.read(ActionFramework::Gem.root.resources.templates("index.html.erb").to_s))		
 		system("cd #{projectname} && bundle install")
 		puts "Done"
-		puts "Run \"afw s\" to run your app"
+		puts "Run \"action s\" to run your app"
 	end
 
 	desc "Start ActionFramework server"
