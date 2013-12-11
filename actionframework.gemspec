@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'actionframework'
-  s.version     = '0.1.3'
+  s.version     = '0.1.3.0'
   s.date        = '2013-11-20'
   s.summary     = "A web framework built on top of Rack"
   s.description = "A web framework built on top of Rack, it has the simplicity of sinatra and the structure of rails"
@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.email       = 'bram.vandenbogaerde@gmail.com'
   s.files       = Dir.glob("lib/**/**/**")
   s.homepage    =
-    'http://rubygems.org/gems/actionframework'
+    'http://actionframework.io'
   s.license = "MIT"
   s.add_runtime_dependency "tilt"
   s.add_runtime_dependency "json"

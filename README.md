@@ -30,13 +30,13 @@ You can install this framework with the following command:
 
 You can easily create a project by running:
 
-    afw new projectname 
+    action new projectname 
 
 This will create a basic directory structure needed by ActionFramework in order to run correctly. It will also create a Gemfile and will run "bundle install" in the project directory.
 
 After that, you can directly test your application by running:
 
-    afw s
+    action s
 
 
 ## Directory structure
