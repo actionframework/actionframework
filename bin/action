@@ -4,6 +4,7 @@ require 'fileutils'
 require 'actionframework'
 require 'json'
 require 'httparty'
+require 'minigit'
 
 class String
 def black;          "\033[30m#{self}\033[0m" end
@@ -74,30 +75,16 @@ class ActionFrameworkCLI < Optitron::CLI
 	end
 
 	desc "Install Stock plugables and add sources list"
-	def install_plugables
-		puts "Creating plugables directory".blue
-		puts "Downloading plugables sources list...".blue
+	def init
 		Dir.mkdir(Dir.home+"/.actionframework/")
-		Dir.mkdir(Dir.home+"/.actionframework/plugables/")
-		Dir.mkdir(Dir.home+"/.actionframework/plugables/sources/")
-		Dir.mkdir(Dir.home+"/.actionframework/plugables/plugs/")
-		
-		begin
-			plugables = HTTParty.get("https://raw.github.com/actionframework/plubables/master/sources.json").body
-			File.write(Dir.home+"/.actionframework/plugables/sources/list.json",plugables)
-			puts "Downloading stock plugables...".blue
-			plugables["stock"].each do |plugable|
-				puts "Downloading ".plugable["name"]+"..."
-				source = HTTParty.get("https://raw.github.com/actionframework/plugables/master/plugs/"+plugable["name"]+".rb").body
-				File.write(Dir.home+"/.actionframework/plugables/plugs/"+plugable["name"],source)
-			end
-		rescue Exception => e
-			puts "ERROR: Something went wrong".red
-			puts "ERROR: "+e.message.red
-			puts "LOG: "+e.backtrace.inspect
-		end
-		puts "Done".green
+		MiniGit.git(:clone ,"https://github.com/actionframework/plugables ~/.actionframework/plugables/")
 	end	
+
+	desc "Update plugables"
+	def update
+		git  = MiniGit.new(Dir.home+"/.actionframework/plugables")
+		git.pull
+	end
 end
 
 ActionFrameworkCLI.dispatch
