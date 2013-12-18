@@ -5,7 +5,7 @@ module ActionFramework
 				response = model.create(JSON.parse(req.body.string)).to_json
 				res.write response	
 			else
-				res.write({:error => "403 Forbidden"}.to_json)
+				error_403 res
 			end
 			res.finish
 		end
@@ -15,7 +15,7 @@ module ActionFramework
 				response = model.all.to_json
 				res.write response
 			else
-				res.write({:error => "403 Forbidden"}.to_json)
+				error_403 res
 			end
 			res.finish
 		end
@@ -27,9 +27,14 @@ module ActionFramework
 				response = modelfind.update_attributes(doc[:attributes]).to_json						
 				res.write response
 			else
-				res.write({:error => "403 Forbidden"}.to_json)
+				error_403 res
 			end
 			res.finish
+		end
+
+		def error_403 res
+			res.status = 404	
+			res.write({:error => "403 Forbidden"}.to_json)
 		end
 	end
 end
