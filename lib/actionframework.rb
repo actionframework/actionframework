@@ -64,9 +64,9 @@ module ActionFramework
 			res = Rack::Response.new
 
 			# auto-api feature (only at path /api/*)
-			res = getModelResponse(req,res)
-			if(!res.nil?)
-				return res
+			reso = getModelResponse(req,res)
+			if(!reso.nil?)
+				return reso
 			end
 
 			controllerinfo = @routesklass.route(req.path,req.request_method)
@@ -81,7 +81,7 @@ module ActionFramework
 
 			control = controller.split("#")
 			result = Object.const_get(control[0]).new(req,res,matcheddata).send(control[1])			
-			res.body = [result]
+			res.write result
 			res.finish
 		end
 		def routes &block
@@ -104,6 +104,8 @@ module ActionFramework
 				if(policy != nil)
 					res["Content-type"] = "application/json"
 					model = Object.const_get(matcheddata[:modelname].capitalize)
+					model.instance_variable_set("@req",req)
+
 					case req.request_method
 					when "POST"
 						return ActionFramework::ModelHelper.post model,req,res
