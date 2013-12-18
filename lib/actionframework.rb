@@ -64,7 +64,10 @@ module ActionFramework
 			res = Rack::Response.new
 
 			# auto-api feature (only at path /api/*)
-			getModelResponse req,res
+			res = getModelResponse(req,res)
+			if(!res.nil?)
+				return res
+			end
 
 			controllerinfo = @routesklass.route(req.path,req.request_method)
 			if(controllerinfo == nil)
@@ -96,26 +99,26 @@ module ActionFramework
 	    def getModelResponse req,res
 	    	# auto-api start
 	    	# [todo] add api security with policies 
-	    	if(matcheddate = req.path.match(Regexp.new("^/api/(?<modelname>(.*))$")))
+	    	if(matcheddata = req.path.match(Regexp.new("/api/(?<modelname>(.*))")))
 				policy = @routesklass.models[matcheddata[:modelname]]
 				if(policy != nil)
-					res.headers = {"Content-type" => "application/json"}
-					model = Object.const_get(matcheddata[:modelname])
+					res["Content-type"] = "application/json"
+					model = Object.const_get(matcheddata[:modelname].capitalize)
 					case req.request_method
 					when "POST"
-						ActionFramework::ModelHelper.post model,res
+						return ActionFramework::ModelHelper.post model,req,res
 					when "GET"
-						ActionFramework::ModelHelper.get model,res
+						return ActionFramework::ModelHelper.get model,res
 					when "UPDATE"
-						ActionFramework::ModelHelper.update model,res
+						return ActionFramework::ModelHelper.update model,res
 					when "DELETE"
 						
 					else
 
 					end
-
 				end
 			end
+			nil
 			# end auto-api
 	    end
 
