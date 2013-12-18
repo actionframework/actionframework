@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
   files = libfolder.concat(resourcesfolder)
 
   s.name        = 'actionframework'
-  s.version     = '0.1.3.1'
+  s.version     = '0.1.3.2'
   s.date        = '2013-11-20'
   s.summary     = "A web framework built on top of Rack"
   s.description = "A web framework built on top of Rack, it has the simplicity of sinatra and the structure of rails"
