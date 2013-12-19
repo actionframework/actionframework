@@ -97,11 +97,9 @@ module ActionFramework
 	    end
 
 	    def getModelResponse req,res
-	    	# auto-api start
-	    	# [todo] add api security with policies 
 	    	if(matcheddata = req.path.match(Regexp.new("/api/(?<modelname>(.*))")))
-				policy = @routesklass.models[matcheddata[:modelname]]
-				if(policy != nil)
+	    			return nil unless @routesklass.models.include?(matcheddata[:modelname])
+					
 					res["Content-type"] = "application/json"
 					model = Object.const_get(matcheddata[:modelname].capitalize)
 					model.instance_variable_set("@req",req)
@@ -118,11 +116,8 @@ module ActionFramework
 					else
 
 					end
-				end
 			end
 			nil
-			# end auto-api
 	    end
-
 	end	
 end

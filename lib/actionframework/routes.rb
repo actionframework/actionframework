@@ -10,7 +10,7 @@ module ActionFramework
 
 		def initialize
 			@routes = {:get => {}, :post => {}, :update => {}, :delete => {}, :patch => {}}
-			@models = {}
+			@models = []
 		end
 
 		def build_regex string
@@ -42,9 +42,9 @@ module ActionFramework
 			@routes[:patch][build_regex(hash.keys.first.to_s)] = hash[hash.keys.first.to_s] 
 		end
 
-		def model hash
+		def model name
 			# @models[name of the class of the model] = name of class of the access policy of the model
-			@models[hash.keys.first.to_s] = hash[hash.keys.first.to_s]
+			@models << name 
 		end
 
 		def route(path,method)
