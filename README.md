@@ -26,6 +26,10 @@ You can install this framework with the following command:
 
     [sudo] gem install actionframework
 
+To install the development version from Github do the following:
+
+    [sudo] curl http://actionframework.io/install | sh
+
 # Getting started
 
 You can easily create a project by running:
