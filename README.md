@@ -28,7 +28,7 @@ You can install this framework with the following command:
 
 To install the development version from Github do the following:
 
-    [sudo] curl http://actionframework.io/install | sh
+    [sudo] curl http://install.actionframework.io/dev | sh
 
 # Getting started
 
