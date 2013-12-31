@@ -55,6 +55,7 @@ class ActionFrameworkCLI < Optitron::CLI
 		File.write("#{projectname}/config/plugables.rb","# Feature under development")
 		File.write("#{projectname}/views/layout.html.erb",File.read(ActionFramework::Gem.root.resources.templates("layout.html.erb").to_s))
 		File.write("#{projectname}/views/index.html.erb",File.read(ActionFramework::Gem.root.resources.templates("index.html.erb").to_s))		
+		File.write("#{projectname}/config/auth",File.read(ActionFramework::Gem.root.resources.config("auth.rb").to_s))
 		system("cd #{projectname} && bundle install")
 		puts "Done"
 		puts "Run \"rackup\" to run your app"

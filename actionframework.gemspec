@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "httparty"
   s.add_runtime_dependency "jewel"
   s.add_runtime_dependency "minigit"
-
+  s.add_runtime_dependency 'omniauth', '~> 1.0'
 
   s.executables = ["action"]
 end

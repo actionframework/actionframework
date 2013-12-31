@@ -15,6 +15,10 @@ module ActionFramework
 					run ActionFramework::Realtime.new
 				end
 
+				use OmniAuth::Builder do
+					require './config/auth'
+				end
+				
 	       	  	run ActionFramework::Server.current
 	       	end
 		end
