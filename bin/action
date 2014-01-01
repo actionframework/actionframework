@@ -44,6 +44,7 @@ class ActionFrameworkCLI < Optitron::CLI
 		Dir.mkdir("#{projectname}/initializers")
 		FileUtils.touch("#{projectname}/views/layout.html.erb")
 		FileUtils.touch("#{projectname}/Gemfile")
+		FileUtils.touch("#{projectname}/config/auth.rb")
 		File.write("#{projectname}/main.rb","# Example of basic configuration\nActionFramework = ActionFramework::Server.new\n\nnActionFramework.autoimport\nActionFramework.start")
 		File.write("#{projectname}/controllers/default_controller.rb","class DefaultController < ActionFramework::Controller
 \n	def index\n		erb \"index\" \n    end\nend");
@@ -55,7 +56,7 @@ class ActionFrameworkCLI < Optitron::CLI
 		File.write("#{projectname}/config/plugables.rb","# Feature under development")
 		File.write("#{projectname}/views/layout.html.erb",File.read(ActionFramework::Gem.root.resources.templates("layout.html.erb").to_s))
 		File.write("#{projectname}/views/index.html.erb",File.read(ActionFramework::Gem.root.resources.templates("index.html.erb").to_s))		
-		File.write("#{projectname}/config/auth",File.read(ActionFramework::Gem.root.resources.config("auth.rb").to_s))
+		File.write("#{projectname}/config/auth.rb",File.read(ActionFramework::Gem.root.resources.config("auth.rb").to_s))
 		system("cd #{projectname} && bundle install")
 		puts "Done"
 		puts "Run \"rackup\" to run your app"

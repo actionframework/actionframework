@@ -13,6 +13,7 @@ require 'actionframework/error_handler'
 require 'actionframework/modelhelper'
 require 'actionframework/realtime'
 require 'actionframework/base'
+require 'event_emitter'
 
 $runningserver = nil
 
