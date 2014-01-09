@@ -64,6 +64,10 @@ module ActionFramework
 			req = Rack::Request.new(env)
 			res = Rack::Response.new
 
+			# redirection
+			redirect = @routesklass.redirect? req
+			return res.redirect(redirect.to) unless redirect.nil
+
 			# auto-api feature (only at path /api/*)
 			reso = getModelResponse(req,res)
 			if(!reso.nil?)

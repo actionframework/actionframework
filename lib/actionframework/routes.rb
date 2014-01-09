@@ -2,15 +2,18 @@
 # Licenced under MIT ##
 ### © BramVDB.com #####
 #######################
+require 'ostruct'
 
 module ActionFramework
 	class Routes
 		attr_accessor :routes
 		attr_accessor :models
+		attr_accessor :redirects
 
 		def initialize
 			@routes = {:get => {}, :post => {}, :update => {}, :delete => {}, :patch => {}}
 			@models = []
+			@redirects = []
 		end
 
 		def build_regex string
@@ -55,5 +58,23 @@ module ActionFramework
 			end
 			return nil
 		end
+
+		def redirect(hash)
+			hash[:from] = build_regex(hash[:from])
+			@redirects << hash
+		end
+
+		def redirect? (req)
+			@redirects.each do |redirect|
+				if(matched = req.path.match(redirect[:from]))
+					matched.each do |key,value|
+						redirect[:to].gsub("{{#{key}}}",value)
+					end
+					return OpenStruct.new(redirect)
+				end
+			end	
+			nil
+		end
+
 	end
 end
