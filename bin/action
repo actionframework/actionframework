@@ -87,6 +87,19 @@ class ActionFrameworkCLI < Optitron::CLI
 		git  = MiniGit.new(Dir.home+"/.actionframework/plugables")
 		git.pull
 	end
+
+	desc "Generate command - see action g help"
+	def g command
+		case command;
+		when "help"
+			puts "action g authentication # Generates neccesary files for authentication"
+		when "authentication"
+			puts "Generation of neccesary files".green
+			
+		else
+			puts "Undefined command #{command}"
+		end
+	end
 end
 
 ActionFrameworkCLI.dispatch
