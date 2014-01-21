@@ -19,6 +19,11 @@ module ActionFramework
 					require './config/auth'
 				end
 				
+				use Warden::Manager do |manager|
+  					manager.default_strategies :password
+  					manager.failure_app = ActionFramework::Server.current
+				end
+	       	  	
 	       	  	run ActionFramework::Server.current
 	       	end
 		end
