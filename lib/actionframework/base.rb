@@ -2,6 +2,8 @@
 # Licenced under MIT ##
 ### © BramVDB.com #####
 #######################
+require 'warden'
+
 module ActionFramework
 	# Base class (in config.ru -> run ActionFramework::Base.new)
 	class Base
