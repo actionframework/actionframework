@@ -14,10 +14,6 @@ module ActionFramework
 				map '/realtime' do
 					run ActionFramework::Realtime.new
 				end
-
-				use OmniAuth::Builder do
-					require './config/auth'
-				end
 				
 				use Warden::Manager do |manager|
   					manager.default_strategies :password
