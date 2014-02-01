@@ -66,7 +66,11 @@ module ActionFramework
 
 			# redirection
 			redirect = @routesklass.redirect? req
-			return res.redirect(redirect.to) unless redirect.nil?
+			if(!redirect.nil?)
+				res.redirect(redirect.to)
+				return res.finish
+			end
+			
 
 			# auto-api feature (only at path /api/*)
 			reso = getModelResponse(req,res)
