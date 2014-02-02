@@ -69,13 +69,9 @@ module ActionFramework
 				if(matched = req.path.match(redirect[:from]))
 					begin
 						matched.names.each do |key|
-							puts matched[key]
 							redirect[:to] = redirect[:to].gsub("{{#{key}}}",matched[key])
-							puts redirect.inspect
 						end
 					rescue Exception => e
-						p e
-						puts "Framework: couldn't construct key value pairs"
 					end
 					return OpenStruct.new(redirect)
 				end

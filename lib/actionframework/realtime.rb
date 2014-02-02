@@ -18,7 +18,7 @@ module ActionFramework
 				@nosocket = false
 				@message = ActionFramework::RealtimeMessage.new(socket)
 			rescue
-				puts "Socket not used in this application"
+				
 			end
 		end
 
