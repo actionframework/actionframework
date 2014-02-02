@@ -88,6 +88,14 @@ So for example you have a profile page and you want to dynamicly load a user his
 		get "/profile/{{id}}" => "ProfileController#profile"
 	end
 
+#### Redirection
+
+You can handle redirection from your controller or from the routes.rb.
+
+	ActionFramework::Server.current.routes do
+		redirect :to => "/p/{{id}}", :from => "/profile/{{id}}"
+	end
+
 ### Controllers
 
 Controllers are loaded from the "controller" directory.
@@ -109,6 +117,8 @@ ActionFramework has built-in support for ERB templates.
 			erb "templatename"
 		end
 	end
+
+We're planning to support other engines in future releases.
 
 ### Templating
 
