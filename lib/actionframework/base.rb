@@ -18,8 +18,10 @@ module ActionFramework
 				end
 				
 				use Warden::Manager do |manager|
-  					manager.default_strategies :password
-  					manager.failure_app = ActionFramework::Server.current
+					config = File.read('./config/auth.rb')
+					manager.failure_app = ActionFramework::Server.current
+
+  					eval config
 				end
 	       	  	
 	       	  	run ActionFramework::Server.current
