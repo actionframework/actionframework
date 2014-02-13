@@ -90,7 +90,7 @@ module ActionFramework
 			matcheddata = controllerinfo[1]
 
 			control = controller.split("#")
-			result = Object.const_get(control[0]).new(req,res,matcheddata).send(control[1])			
+			result = Object.const_get(control[0]).new(env,req,res,matcheddata).send(control[1])			
 			res.write result
 			res.finish
 		end

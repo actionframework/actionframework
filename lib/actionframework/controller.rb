@@ -5,10 +5,15 @@
 
 module ActionFramework
 	class Controller
-		def initialize req,res,url
+		def initialize env,req,res,url
 			@req = req
 			@res = res
 			@url = url
+			@env = env
+		end
+
+		def env
+			@env
 		end
 
 		def request
