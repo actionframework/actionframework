@@ -60,5 +60,10 @@ module ActionFramework
 		def session
 			@req.session
 		end
+
+		def redirect path
+			response.redirect path
+			""
+		end
 	end
 end

@@ -52,6 +52,8 @@ module ActionFramework
 
 		def route(path,method)
 			@routes[method.downcase.to_sym].each do |regex,controller|
+				puts regex.inspect
+				
 				if(matched = path.match(regex))
 					return [controller,matched]
 				end
