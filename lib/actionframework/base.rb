@@ -20,7 +20,7 @@ module ActionFramework
 					run ActionFramework::Realtime.new
 				end
 
-				use Rack::Session::Cookie, :secret => ActionFramework::Server.current.settings.cookie_secret
+				use Rack::Session::Cookie, :secret => ActionFramework::Server.current.get_settings.cookie_secret
 				
 				use Warden::Manager do |manager|
 					config = File.read('./config/auth.rb')

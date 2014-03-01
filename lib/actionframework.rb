@@ -20,8 +20,6 @@ $runningserver = nil
 
 module ActionFramework
 	class Server
-		attr_reader :settings
-
 		def initialize
 			require 'bundler'
 			Bundler.require(:default)
@@ -102,6 +100,10 @@ module ActionFramework
 
 		def settings
 			yield @settings
+		end
+
+		def get_settings
+			@settings
 		end
 
 		def start
