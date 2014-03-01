@@ -9,6 +9,9 @@ module ActionFramework
 	class Base
 		def initialize
 			@app = Rack::Builder.new do
+				# Initialize ActionFramework itself
+				ActionFramework::Server.current
+
 				map '/static' do
 					run Rack::File.new("static")
 				end
@@ -16,6 +19,8 @@ module ActionFramework
 				map '/realtime' do
 					run ActionFramework::Realtime.new
 				end
+
+				use Rack::Session::Cookie, :secret => ActionFramework::Server.current.settings.cookie_secret
 				
 				use Warden::Manager do |manager|
 					config = File.read('./config/auth.rb')
@@ -23,7 +28,8 @@ module ActionFramework
 
   					eval config
 				end
-	       	  	
+
+	       	  	# Run ActionFramework
 	       	  	run ActionFramework::Server.current
 	       	end
 		end
