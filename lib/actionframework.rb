@@ -45,11 +45,11 @@ module ActionFramework
 	    end
 
 	    def autoimport
-	      Dir.glob("controllers/*").each do |file|
+	      Dir.glob("controllers/*.rb").each do |file|
 	        require './'+file
 	      end
 
-	      Dir.glob("models/*").each do |file|
+	      Dir.glob("models/*.rb").each do |file|
 	        require './'+file
 	      end
 
@@ -57,7 +57,7 @@ module ActionFramework
 	      require './config/settings'
 	      require './config/plugables'
 
-	      Dir.glob("initializers/*").each do |file|
+	      Dir.glob("initializers/*.rb").each do |file|
 	        require './'+file
 	      end
 
