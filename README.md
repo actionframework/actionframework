@@ -5,7 +5,7 @@ ActionFramework
 
 [![Code Climate](https://codeclimate.com/github/actionframework/actionframework.png)](https://codeclimate.com/github/actionframework/actionframework)
 
-<b> Warning: This framework is developping fast, so a new minor release can include breaking changes with your existing code. Checkout the [changelog](https://github.com/actionframework/actionframework/blob/master/CHANGELOG.md) to see what has changed between versions.</b>
+<b> Warning: This framework is developping fast, so a new minor release can include breaking changes with your existing code. Checkout the release page to see what has changed between versions</b>
 
 Ready for action? Ready, set, go!
 
