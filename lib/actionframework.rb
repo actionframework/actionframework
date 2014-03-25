@@ -2,6 +2,7 @@ require 'rack'
 require 'tilt'
 require 'json'
 require 'erb'
+require 'action_mailer'
 
 require 'actionframework/string'
 require 'actionframework/gemextra'
@@ -14,7 +15,9 @@ require 'actionframework/modelhelper'
 require 'actionframework/realtime'
 require 'actionframework/base'
 require 'actionframework/authentication'
+require 'actionframework/mailer'
 require 'event_emitter'
+
 
 $runningserver = nil
 
@@ -47,6 +50,10 @@ module ActionFramework
 	        require './'+file
 	      end
 
+	      Dir.glob("controller/mailers/*.rb") do |file|
+	      	require './'+file
+	      end
+
 	      Dir.glob("models/*.rb").each do |file|
 	        require './'+file
 	      end
@@ -54,6 +61,7 @@ module ActionFramework
 	      require './config/routes'
 	      require './config/settings'
 	      require './config/plugables'
+	      require './config/mailer'
 
 	      Dir.glob("initializers/*.rb").each do |file|
 	        require './'+file

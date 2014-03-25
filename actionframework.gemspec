@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'omniauth', '~> 1.0'
   s.add_runtime_dependency 'event_emitter'
   s.add_runtime_dependency "warden"
+  s.add_runtime_dependency "actionmailer"
 
   s.executables = ["action"]
 end
