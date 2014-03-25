@@ -126,6 +126,14 @@ Templates are loaded from the "views" directory
 Their filename must match the following pattern: "TEMPLATENAME.html.erb"
 In the "views" folder, there also is a file called "layout.html.erb", this file is used to make headers and footers if you like.
 
+### E-mail
+
+ActionFramework also supports sending e-mails. This is done by using the Ruby on Rails ActionMailer. This means you can send mails the "Rails" way.
+
+There is already a sample config populated in config/mailer.rb when you create your project.
+
+For more documentation I would recommend to read the official ActionMailer docs.
+
 # Other documentation
 
 I hope this README is clear enough for your to understand how you can use this framework to build your next awesome application. If you have any questions please contact me at [Twitter](https://www.twitter.com/bramvdbogaerde).
