@@ -128,6 +128,8 @@ In the "views" folder, there also is a file called "layout.html.erb", this file 
 
 ### E-mail
 
+__This is only available in the development release on Github!__
+
 ActionFramework also supports sending e-mails. This is done by using the Ruby on Rails ActionMailer. This means you can send mails the "Rails" way.
 
 There is already a sample config populated in config/mailer.rb when you create your project.
