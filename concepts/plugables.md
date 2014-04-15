@@ -1,7 +1,10 @@
 Plugables
 ===============
+_STATUS: in development_
 
 __THIS IS JUST A CONCEPT THE ACTUAL IMPLEMENTATION IS NOT THERE YET__
+
+
 
 Plugables are little project templates that can be merged with your project.
 Plugables can include configuration files, but also routes, controllers or view templates.
