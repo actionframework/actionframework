@@ -36,7 +36,7 @@ class ActionFrameworkCLI < Optitron::CLI
 	def new projectname
 		puts "Creating project directory"
 		Dir.mkdir("#{projectname}")
-		puts "Copying project template"		
+		puts "Copying project template"
 	    path = ActionFramework::Gem.root.resources.project_template.to_s
 		FileUtils.cp_r(Dir.glob(path+"/*"),"#{projectname}")
 		system("cd #{projectname} && bundle install")
@@ -45,16 +45,16 @@ class ActionFrameworkCLI < Optitron::CLI
 	end
 
 	desc "Start ActionFramework server"
-	def s  
+	def s
 		`rackup`
 	end
 
 	desc "Start ActionFramework console"
 	def c
-		$runningserver = ActionFramework::Server.new
+		$runningserver = ActionFramework::Server.current
 		puts "Starting ActionFramework IRB"
 		require 'irb'
-		ARGV.clear	
+		ARGV.clear
 		IRB.start
 	end
 
@@ -62,7 +62,7 @@ class ActionFrameworkCLI < Optitron::CLI
 	def init
 		Dir.mkdir(Dir.home+"/.actionframework/")
 		MiniGit.git(:clone ,"https://github.com/actionframework/plugables ~/.actionframework/plugables/")
-	end	
+	end
 
 	desc "Update plugables"
 	def update
@@ -77,7 +77,7 @@ class ActionFrameworkCLI < Optitron::CLI
 			puts "action g authentication # Generates neccesary files for authentication"
 		when "authentication"
 			puts "Generation of neccesary files".green
-			
+
 		else
 			puts "Undefined command #{command}"
 		end
