@@ -58,30 +58,6 @@ class ActionFrameworkCLI < Optitron::CLI
 		IRB.start
 	end
 
-	desc "Install Stock plugables and add sources list"
-	def init
-		Dir.mkdir(Dir.home+"/.actionframework/")
-		MiniGit.git(:clone ,"https://github.com/actionframework/plugables ~/.actionframework/plugables/")
-	end
-
-	desc "Update plugables"
-	def update
-		git  = MiniGit.new(Dir.home+"/.actionframework/plugables")
-		git.pull
-	end
-
-	desc "Generate command - see action g help"
-	def g command
-		case command;
-		when "help"
-			puts "action g authentication # Generates neccesary files for authentication"
-		when "authentication"
-			puts "Generation of neccesary files".green
-
-		else
-			puts "Undefined command #{command}"
-		end
-	end
 end
 
 ActionFrameworkCLI.dispatch
