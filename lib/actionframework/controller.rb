@@ -5,6 +5,8 @@
 
 module ActionFramework
 	class Controller
+		@@run_before = []
+
 		def initialize env,req,res,url
 			@req = req
 			@res = res
@@ -65,5 +67,27 @@ module ActionFramework
 			response.redirect path
 			""
 		end
+
+		def self.run_before(*args)
+			args.each do |methodname|
+					@@run_before << methodname
+			end
+		end
+
+		def execute_run_before
+			output = nil
+			@@run_before.each do |methodname|
+				returns = self.send(methodname)
+
+				if(returns.class.to_s == "String")
+					output = returns
+					break
+				end
+				
+			end
+
+			return output
+		end
+
 	end
 end
