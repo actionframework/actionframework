@@ -9,6 +9,7 @@ require 'actionframework/gemextra'
 require 'actionframework/gem'
 require 'actionframework/routes'
 require 'actionframework/controller'
+require 'actionframework/controller_supervisor'
 require 'actionframework/settings'
 require 'actionframework/error_handler'
 require 'actionframework/modelhelper'
@@ -26,7 +27,7 @@ module ActionFramework
 		def initialize
 			require 'bundler'
 			Bundler.require(:default)
-			
+
 			@routesklass = ActionFramework::Routes.new
 			@settings = ActionFramework::Settings.new
 		end
@@ -40,7 +41,7 @@ module ActionFramework
 	         $runningserver
 	       end
 	    end
-	    
+
 	    def self.current=(runningserver)
 	      $runningserver = runningserver
 	    end
@@ -79,7 +80,7 @@ module ActionFramework
 				res.redirect(redirect.to)
 				return res.finish
 			end
-			
+
 
 			# auto-api feature (only at path /api/*)
 			reso = getModelResponse(req,res)
@@ -92,13 +93,12 @@ module ActionFramework
 				res.body = [ActionFramework::ErrorHandler.new(env,req,res,{}).send("error_404")]
 				res.status = 404
 				return res.finish
-			end	
+			end
 
 			controller = controllerinfo[0]
 			matcheddata = controllerinfo[1]
 
-			control = controller.split("#")
-			result = Object.const_get(control[0]).new(env,req,res,matcheddata).send(control[1])			
+			result = ActionFramework::ControllerSupervisor.new.run(controller,env,req,res,matcheddata)
 			res.write result
 			res.finish
 		end
@@ -121,7 +121,7 @@ module ActionFramework
 	    def getModelResponse req,res
 	    	if(matcheddata = req.path.match(Regexp.new("/api/(?<modelname>(.*))")))
 	    			return nil unless @routesklass.models.include?(matcheddata[:modelname])
-					
+
 					res["Content-type"] = "application/json"
 					model = Object.const_get(matcheddata[:modelname].capitalize)
 					model.instance_variable_set("@req",req)
@@ -134,12 +134,12 @@ module ActionFramework
 					when "UPDATE"
 						return ActionFramework::ModelHelper.update model,res
 					when "DELETE"
-						
+
 					else
 
 					end
 			end
 			nil
 	    end
-	end	
+	end
 end
