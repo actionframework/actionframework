@@ -30,7 +30,7 @@ end
 class ActionFrameworkCLI < Optitron::CLI
 	desc "About ActionFramework"
 	def about
-		puts "ActionFramework (previously called ActionFramework) is a web application framework that tries to be as flexible as sinatra and at the same time have the structure of rails.Enjoy!"
+		puts "ActionFramework is a web application framework that tries to be as flexible as sinatra and at the same time have the structure of rails.Enjoy!"
 	end
 	desc "Create ActionFramework project"
 	def new projectname
