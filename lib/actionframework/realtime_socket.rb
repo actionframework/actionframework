@@ -4,17 +4,7 @@ require 'securerandom'
 module ActionFramework
 	class RealtimeSocket
 		def initialize
-			@sock = UNIXServer.new("realtime.sock")
-		end
-
-		def listen
-			$pid = Procces.fork do
-				while(client = @sock.accept)
-					while(line = client.gets)
-						yield
-					end
-				end
-			end
+			puts "RealtimeSocket will soon be removed because of the choice of Redis for transport"
 		end
 	end
 end
