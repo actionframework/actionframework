@@ -16,12 +16,14 @@ module ActionFramework
 					run Rack::File.new("static")
 				end
 
-				map '/realtime' do
-					run ActionFramework::Realtime.new
+				if ($realtime_config.enabled)
+					map '/realtime' do
+						run ActionFramework::Realtime.new
+					end
 				end
 
 				use Rack::Session::Cookie, :secret => ActionFramework::Server.current.get_settings.cookie_secret
-				
+
 				use Warden::Manager do |manager|
 					config = File.read('./config/auth.rb')
 					manager.failure_app = ActionFramework::Server.current

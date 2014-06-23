@@ -11,7 +11,7 @@ Plugables can include configuration files, but also routes, controllers or view 
 
 ## Hosting of plugables
 
-Plugables can be hoster on public Git repositories.
+Plugables can be hosted on public Git repositories.
 There is one central repository that will hold references to these repositories.
 
 ## Plugables maintained by ActionFramework

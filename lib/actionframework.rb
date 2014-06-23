@@ -64,6 +64,8 @@ module ActionFramework
 	      require './config/plugables'
 	      require './config/mailer'
 
+				require './config/realtime' unless !File.exists("./config/realtime.rb")
+
 	      Dir.glob("initializers/*.rb").each do |file|
 	        require './'+file
 	      end
