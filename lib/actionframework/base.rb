@@ -16,7 +16,7 @@ module ActionFramework
 					run Rack::File.new("static")
 				end
 
-				if ($realtime_config.enabled)
+				if (!$realtime_config.nil? || $realtime_config.enabled)
 					map '/realtime' do
 						run ActionFramework::Realtime.new
 					end
