@@ -83,10 +83,19 @@ module ActionFramework
 					output = returns
 					break
 				end
-				
+
 			end
 
 			return output
+		end
+
+		def _static filename
+			File.read("./views/_/#{filename}.html")
+		end
+
+		def _erb templatename,context=self
+			renderer = Tilt::ERBTemplate.new("./views/#{templatename}")
+			renderer.render(context)
 		end
 
 	end
