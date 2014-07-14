@@ -98,5 +98,11 @@ module ActionFramework
 			renderer.render(context)
 		end
 
+
+		# Legacy support for partials
+		def _render filename
+			File.read("./views/_/#{filename}.html")
+		end
+		
 	end
 end
