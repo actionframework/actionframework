@@ -17,7 +17,9 @@ require 'actionframework/realtime'
 require 'actionframework/base'
 require 'actionframework/authentication'
 require 'actionframework/mailer'
+require 'actionframework/project'
 require 'event_emitter'
+
 
 
 $runningserver = nil
