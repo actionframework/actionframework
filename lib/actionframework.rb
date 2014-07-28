@@ -37,7 +37,7 @@ module ActionFramework
 		def self.current
 	       if($runningserver.nil?)
 	       	 $runningserver = ActionFramework::Server.new
-	       	 $runningserver.autoimport
+					 ActionFramework::Project.autoimport
 	         $runningserver
 	       else
 	         $runningserver
@@ -48,7 +48,9 @@ module ActionFramework
 	      $runningserver = runningserver
 	    end
 
+			# DEPRECATED This method will soon be removed in favor of ActionFramework::Project.autoimport
 	    def autoimport
+
 	     ActionFramework::Project.autoimport
 
 	    end
