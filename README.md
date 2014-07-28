@@ -9,14 +9,14 @@ ActionFramework
 
 Ready for action? Ready, set, go!
 
-ActionFramework is a web application framework for Ruby.   
+ActionFramework is a web application framework for Ruby.
 It's meant for rapid and fun development of your application.
 
-Because of that it is easy understandable and easy to use and customize.    
-	
+Because of that it is easy to understand and easy to use and customize.
+
 # Requirements
 
-It just requires Ruby and RubyGems.    
+It just requires Ruby and RubyGems.
 I have tested it with Ruby version 1.9.3.
 
 # Installation
@@ -33,7 +33,7 @@ To install the development version from Github do the following:
 
 You can easily create a project by running:
 
-    action new projectname 
+    action new projectname
 
 This will create a basic directory structure needed by ActionFramework in order to run correctly. It will also create a Gemfile and will run "bundle install" in the project directory.
 
@@ -62,7 +62,7 @@ First, you have a "Gemfile", in this file you are going to specifiy the dependen
 
      gem 'datamapper'
 
-to your Gemfile.     
+to your Gemfile.
 
 Next, we have a directory called "config", this directory is used to store configuration files. Let's begin with the routes.rb file.
 
@@ -80,7 +80,7 @@ Specifying routes is very similar to Rails:
      	# etc
      end
 
-You can also use "placeholders" in your routes path.    
+You can also use "placeholders" in your routes path.
 So for example you have a profile page and you want to dynamicly load a user his/her profile from their "id".
 
 	ActionFramework::Server.current.routes do
@@ -136,13 +136,47 @@ There is already a sample config populated in config/mailer.rb when you create y
 
 For more documentation I would recommend to read the official ActionMailer docs.
 
+# FAQ
+
+__How do I use Sidekiq with this?__
+
+While I was using the framework in one of my applications, I had to use Sidekiq for background proccessing.
+Sidekiq is easy to install in Rails projects but how to use it with ActionFramework?
+
+Actually the solution was very simple, first create a file called "sidekiq.rb" (or whatever you like) in the root of your project.
+Then put the following in that file:
+
+```
+require 'bundler'
+Bundler.require
+ActionFramework::Server.autoimport
+```
+
+After you made that file, you can create your workers, it actually doesn't really matter where you place them, you can place them for example in "./workers", but it can be anywhere you like.
+In order to be able to use your workers in your ActionFramework application, you need to require your workers from an initializer.
+
+So create a new initializer in "./initializers" called "workers.rb" with the following code:
+
+```
+require './workers/YOUWORKER'
+# More workers can be required from this file
+```
+
+Now you can finally start Sidekiq itself:
+
+```
+	$ bundle exec sidekiq -r ./sidekiq.rb
+```
+
+Voila, you just created Sidekiq workers in your ActionFramework project.
+
 # Other documentation
 
 I hope this README is clear enough for your to understand how you can use this framework to build your next awesome application. If you have any questions please contact me at [Twitter](https://www.twitter.com/bramvdbogaerde).
 
 # State of development
 
-Currently the framework is in an alpha stage, but I'm working very hard to get it production ready.    
+Currently the framework is in an alpha stage, but I'm working very hard to get it production ready.
 Version 1.0.0, will be the first stable release and it will bring a website with full documentation. If you like the project please "star" it!
 
 # Changelog
