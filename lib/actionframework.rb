@@ -47,28 +47,7 @@ module ActionFramework
 	    end
 
 	    def autoimport
-	      Dir.glob("controllers/*.rb").each do |file|
-	        require './'+file
-	      end
-
-	      Dir.glob("controller/mailers/*.rb") do |file|
-	      	require './'+file
-	      end
-
-	      Dir.glob("models/*.rb").each do |file|
-	        require './'+file
-	      end
-
-	      require './config/routes'
-	      require './config/settings'
-	      require './config/plugables'
-	      require './config/mailer'
-
-				require './config/realtime' unless !File.exist?("./config/realtime.rb")
-
-	      Dir.glob("initializers/*.rb").each do |file|
-	        require './'+file
-	      end
+	     ActionFramework::Project.autoimport
 
 	    end
 

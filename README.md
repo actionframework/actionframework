@@ -149,7 +149,7 @@ Then put the following in that file:
 ```
 require 'bundler'
 Bundler.require
-ActionFramework::Server.autoimport
+ActionFramework::Project.autoimport
 ```
 
 After you made that file, you can create your workers, it actually doesn't really matter where you place them, you can place them for example in "./workers", but it can be anywhere you like.
