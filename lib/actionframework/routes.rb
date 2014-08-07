@@ -18,7 +18,7 @@ module ActionFramework
 
 		def build_regex string
 			string = string.gsub("{{","(?<")
-			string = string.gsub("}}",">(.*))") 
+			string = string.gsub("}}",">(.*))")
 			string.insert(0,"^")
 			string = string+"$"
 			regex = Regexp.new (string)
@@ -26,34 +26,33 @@ module ActionFramework
 		end
 
 		def get hash
-			@routes[:get][build_regex(hash.keys.first.to_s)] = hash[hash.keys.first.to_s] 
+			@routes[:get][build_regex(hash.keys.first.to_s)] = hash[hash.keys.first.to_s]
 		end
 
 		def post hash
-			@routes[:post][build_regex(hash.keys.first.to_s)] = hash[hash.keys.first.to_s] 
+			@routes[:post][build_regex(hash.keys.first.to_s)] = hash[hash.keys.first.to_s]
 		end
 
 		def update hash
-			@routes[:update][build_regex(hash.keys.first.to_s)] = hash[hash.keys.first.to_s] 
+			@routes[:update][build_regex(hash.keys.first.to_s)] = hash[hash.keys.first.to_s]
 		end
 
 		def delete hash
-			@routes[:delete][build_regex(hash.keys.first.to_s)] = hash[hash.keys.first.to_s] 
+			@routes[:delete][build_regex(hash.keys.first.to_s)] = hash[hash.keys.first.to_s]
 		end
 
 		def patch hash
-			@routes[:patch][build_regex(hash.keys.first.to_s)] = hash[hash.keys.first.to_s] 
+			@routes[:patch][build_regex(hash.keys.first.to_s)] = hash[hash.keys.first.to_s]
 		end
 
 		def model name
 			# @models[name of the class of the model] = name of class of the access policy of the model
-			@models << name 
+			@models << name
 		end
 
 		def route(path,method)
 			@routes[method.downcase.to_sym].each do |regex,controller|
-				puts regex.inspect
-				
+		
 				if(matched = path.match(regex))
 					return [controller,matched]
 				end
@@ -77,7 +76,7 @@ module ActionFramework
 					end
 					return OpenStruct.new(redirect)
 				end
-			end	
+			end
 			nil
 		end
 

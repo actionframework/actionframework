@@ -1,4 +1,5 @@
 require 'rack'
+require 'actionframework/controller'
 
 module ActionFramework
   class ThisObject
@@ -19,23 +20,41 @@ module ActionFramework
     end
   end
 
+  class NextControllerError < StandardError
+
+  end
+
   module NextController
       attr_accessor :klass
       attr_accessor :method
       attr_accessor :nexts
+      attr_accessor :nextElementPlace
+      attr_accessor :neep
       attr_writer :this
 
-      def setup(env)
-        this.request = Rack::Request.new(env)
-        this.response = Rack::Response.new(env)
+
+      def setup(req,res,url,nexts)
+        this.request = req
+        this.response = res
+        this.url = url
+        @nexts = nexts
       end
 
       def goNext(ctx)
+        if(ctx.nexts.length < ctx.neep+1)
+          raise  ActionFramework::NextControllerError,"No \"next\" found, check your routes.rb"
+        end
+        klass,method = ctx.nexts[ctx.neep].split("#")[0],ctx.nexts[ctx.neep].split("#")[1]
+        klass_inst = Object.const_get(klass).new
+        klass_inst.this = ctx.this
+        klass_inst.nexts = ctx.nexts
+        klass_inst.setNext(ctx.neep+1)
+        klass_inst.send(method)
 
       end
 
-      def setNext(methodString,nexts)
-
+      def setNext(nextElementPlace)
+        @neep = nextElementPlace
       end
 
       def this
@@ -43,6 +62,10 @@ module ActionFramework
           @this = ActionFramework::ThisObject.new
         end
         @this
+      end
+
+      def erb(templatename)
+        ActionFramework::Controller.new(nil,nil,nil,nil).erb(templatename)
       end
   end
 end

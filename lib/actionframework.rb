@@ -18,6 +18,7 @@ require 'actionframework/base'
 require 'actionframework/authentication'
 require 'actionframework/mailer'
 require 'actionframework/project'
+require 'actionframework/nextcontroller'
 require 'event_emitter'
 
 
@@ -84,8 +85,12 @@ module ActionFramework
 			matcheddata = controllerinfo[1]
 
 			result = ActionFramework::ControllerSupervisor.new.run(controller,env,req,res,matcheddata)
-			res.write result
-			res.finish
+			if(result.class.to_s == "ActionFramework::ThisObject")
+				result.response.finish
+			else
+				res.write result
+				res.finish
+			end
 		end
 		def routes &block
 			@routesklass.instance_eval &block
