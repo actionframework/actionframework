@@ -42,7 +42,7 @@ module ActionFramework
       end
 
       def goNext(ctx)
-        raise  ActionFramework::NextControllerError,"No \"next\" found, check your routes.rb" unless ctx.nexts.length > ctx.neep+1
+        raise  ActionFramework::NextControllerError,"No \"next\" found, check your routes.rb" if(ctx.nexts.length < ctx.neep+1)
 
         klass,method = ctx.nexts[ctx.neep].split("#")[0],ctx.nexts[ctx.neep].split("#")[1]
         klass_inst = Object.const_get(klass).new
