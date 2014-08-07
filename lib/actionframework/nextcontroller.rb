@@ -1,5 +1,6 @@
 require 'rack'
 require 'actionframework/controller'
+require 'actionframework/template_manager'
 
 module ActionFramework
   class ThisObject
@@ -65,7 +66,7 @@ module ActionFramework
       end
 
       def erb(templatename)
-        ActionFramework::Controller.new(nil,nil,nil,nil).erb(templatename)
+        ActionFramework::TemplateManager::Erb.render(templatename,self)
       end
   end
 end
