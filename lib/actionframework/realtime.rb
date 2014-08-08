@@ -12,24 +12,18 @@ $redis = Redis.new
 module ActionFramework
 	class Realtime < Rack::WebSocket::Application
 		def on_open(env)
-			return unless $realtime_config.enabled
 			request = Rack::Request.new(env)
-
-			$redis.publish request.path, env["HTTP_SEC_WEBSOCKET_KEY"]
-
-			$redis.subscribe env["HTTP_SEC_WEBSOCKET_KEY"] do |on|
-				on.message do |channel,message|
-					send_data message
-				end
-			end
+			perform_action(env,request.path,"on_open",nil)
 		end
 
 		def on_message(env,message)
-			$redis.publish env["HTTP_SEC_WEBSOCKET_KEY"], message
+			request = Rack::Request.new(env)
+			perform_action(env,request.path,"on_message",message)
 		end
 
 		def on_close(env)
-
+			request = Rack::Request.new(env)
+			perform_action(env,request.path,"on_close",nil)
 		end
 
 		def self.configure
@@ -37,12 +31,16 @@ module ActionFramework
 			yield($realtime_config)
 		end
 
+
+		def perfom_action(env,path,method,payload)
+			matchedroute = ActionFramework::Server.current.routes.route(path,"realtime")
+			controller,url = matchedroute[0],matchedroute[1]
+
+			Object.const_get(controller).new(url,req,env,payload).send(method,payload)
+		end
 	end
 
 	class RealtimeConfigure
 		attr_accessor :enabled
-		## Redis might not fit your needs, that's why I will make something that your can plug your own server of choice into the websockets by using the predefined callbacks
-		attr_accessor :redis_prefix
-		attr_accessor :redis_uri
 	end
 end

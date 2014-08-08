@@ -11,7 +11,7 @@ module ActionFramework
 		attr_accessor :redirects
 
 		def initialize
-			@routes = {:get => {}, :post => {}, :update => {}, :delete => {}, :patch => {}}
+			@routes = {:get => {}, :post => {}, :update => {}, :delete => {}, :patch => {},:realtime => {}}
 			@models = []
 			@redirects = []
 		end
@@ -50,9 +50,13 @@ module ActionFramework
 			@models << name
 		end
 
+		def realtime hash
+			@routes[:realtime][build_regex(hash.keys.first.to_s)] = hash[hash.keys.first.to_s]
+		end
+
 		def route(path,method)
 			@routes[method.downcase.to_sym].each do |regex,controller|
-		
+
 				if(matched = path.match(regex))
 					return [controller,matched]
 				end
