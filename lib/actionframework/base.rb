@@ -15,12 +15,9 @@ module ActionFramework
 				map '/static' do
 					run Rack::File.new("static")
 				end
-				if(!$realtime_config.nil?)
-					if ($realtime_config.enabled)
-						map '/realtime' do
-							run ActionFramework::Realtime.new
-						end
-					end
+
+				map '/realtime' do
+					run ActionFramework::Realtime.new
 				end
 
 				use Rack::Session::Cookie, :secret => ActionFramework::Server.current.get_settings.cookie_secret

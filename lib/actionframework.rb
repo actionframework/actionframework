@@ -27,6 +27,8 @@ $runningserver = nil
 
 module ActionFramework
 	class Server
+		attr_accessor :routesklass
+
 		def initialize
 			require 'bundler'
 			Bundler.require(:default)

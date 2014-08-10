@@ -26,6 +26,8 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "warden"
   s.add_runtime_dependency "actionmailer"
   s.add_runtime_dependency "redis"
+  s.add_runtime_dependency "tubesock"
+  s.add_runtime_dependency "websocket"
 
   s.executables = ["action"]
 end
