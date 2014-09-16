@@ -84,5 +84,8 @@ module ActionFramework
 			nil
 		end
 
+	 def add_next(method,path,index,action)
+		@routes[method][build_regex(path)].insert(index,action);
+	 end
 	end
 end
