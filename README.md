@@ -173,6 +173,7 @@ Voila, you just created Sidekiq workers in your ActionFramework project.
 # Other documentation
 
 I hope this README is clear enough for your to understand how you can use this framework to build your next awesome application. If you have any questions please contact me at [Twitter](https://www.twitter.com/bramvdbogaerde).
+Better documentation will follow soon.
 
 # State of development
 
