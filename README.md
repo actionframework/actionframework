@@ -1,7 +1,7 @@
 ActionFramework
 ===============
 
-<center><img src="http://actionframework.io/rocket_smaller.png" /></center>
+<center><img src="http://actionframework.bramvdb.com/rocket_smaller.png" /></center>
 
 [![Code Climate](https://codeclimate.com/github/actionframework/actionframework.png)](https://codeclimate.com/github/actionframework/actionframework)
 
@@ -27,7 +27,7 @@ You can install this framework with the following command:
 
 To install the development version from Github do the following:
 
-    [sudo] curl http://install.actionframework.io/dev | sh
+    [sudo] curl http://install.actionframework.bramvdb.com/dev | sh
 
 # Getting started
 

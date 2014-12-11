@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.email       = 'bram.vandenbogaerde@gmail.com'
   s.files       = files
   s.homepage    =
-    'http://actionframework.io'
+    'http://actionframework.bramvdb.com'
   s.license = "MIT"
   s.add_runtime_dependency "tilt"
   s.add_runtime_dependency "json"
